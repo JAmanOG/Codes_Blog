@@ -88,9 +88,9 @@ function Postform({ post }) {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: false })}
+          {...register("image", { required: !post })}
         />
-        {post && post.featuredImage && (
+        {post && (
           <div className="w-full mb-4">
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
