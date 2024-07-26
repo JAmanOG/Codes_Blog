@@ -1,6 +1,6 @@
 import React, { useId } from "react";
 
-const selectBtn = React.forwardRef(function selectBtn(
+const Select = React.forwardRef(function selectBtn(
   { options, label, className = "", ...props },
   ref
 ) {
@@ -12,7 +12,7 @@ const selectBtn = React.forwardRef(function selectBtn(
           <label htmlFor={id} className="inline-block text-sm font-medium">
             {" "}
           </label>
-          <select name="" id={id} ref={ref} className={`${className}`}>
+          <select name="" id={id} ref={ref} {...props} className={`${className}`}>
             {options?.map((option) => (
               <option key={option} value={option.value}>
                 {option}
@@ -25,4 +25,4 @@ const selectBtn = React.forwardRef(function selectBtn(
   );
 });
 
-export default selectBtn;
+export default Select;

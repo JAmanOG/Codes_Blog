@@ -1,11 +1,9 @@
 import React from "react";
-import { container as Container } from "../Container/container";
+import  Container from "../Container/container";
 import Logo from "../logo";
-import logoutBtn from "./logoutBtn";
+import LogoutBtn from "./logoutBtn";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import authSlice from "../../Store/authSlice";
-import authService from "../../services/authentication";
 
 function header() {
 
@@ -37,7 +35,7 @@ function header() {
             )}
             {authstatus && (
               <li>
-                <logoutBtn />
+                <LogoutBtn />
               </li>
             )}
           </ul>

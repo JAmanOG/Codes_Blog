@@ -1,29 +1,39 @@
-import { useState } from 'react'
-import './App.css'
-import { useDispatch } from 'react-redux'
-import authServices from './services/authentication'
-import { login, logout } from './Store/authSlice'
+import { useState, useEffect } from 'react';
+import './App.css';
+import { useDispatch } from 'react-redux';
+import authServices from './services/authentication';
+import { login, logout } from './Store/authSlice';
+import Header from './components/Headers/header';
+import Footer from './components/Footer/footer';
+import { Outlet} from 'react-router-dom';
 
 function App() {
-  const [loading,setLoading] = useState(true)
-
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    authServices.getCurrentUser().then((userData) => {
-      userData? dispatch(login(userData)):dispatch(logout(),alert(`Failed to fetch your data: ${userData}, Plz relogin or Create new user`));
-  }).finally(setLoading(false))}, [loading])
-  
+    authServices.getCurrentUser()
+      .then((userData) => {
+        if (userData) {
+          dispatch(login({ userData }));
+        } else {
+          dispatch(logout());
+        }
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   return !loading ? (
-    <div className="App min-h-sc">
-      <header className="App-header">
-        <h1>React Redux Toolkit Authentication</h1>
-      </header>
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
+        <main>
+        TODO:  <Outlet />
+        </main>
+        <Footer />
+      </div>
     </div>
-  ) : (
-    <div>something went Wrong </div>
-  )
+  ) : null
 }
 
-export default App
+export default App;

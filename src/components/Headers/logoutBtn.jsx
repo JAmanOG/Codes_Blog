@@ -13,7 +13,7 @@ function logoutBtn() {
     )
     }
   return (
-    <button className='inline-block p-5 border duration-200'>Logout</button>
+    <button onClick={handleLogout} className='inline-block p-5 border duration-200'>Logout</button>
   )
 }
 

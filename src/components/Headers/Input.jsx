@@ -1,40 +1,26 @@
 import React, { useId } from "react";
 
-/**
- * Input component for rendering an input field with an optional label.
- *
- * @component
- * @param {Object} props - The input component props.
- * @param {string} [props.id] - The ID of the input element.
- * @param {string} [props.label] - The label text for the input field.
- * @param {string} [props.type="text"] - The type of the input field.
- * @param {string} [props.name=""] - The name attribute of the input field.
- * @param {string} [props.placeholder=""] - The placeholder text for the input field.
- * @param {string} [props.className=""] - Additional CSS classes for the input field.
- * @param {React.Ref} ref - The ref object for the input element.
- * @returns {JSX.Element} The rendered Input component.
- */
 const Input = React.forwardRef(function Input(
   {
-    id = useId(),
-    label,
-    type = "text",
-    name = "",
-    placeholder = "",
-    className = "",
-    ...props
-  },
-  ref
-) {
+    placeholder,
+      label,
+      type = "text",
+      className = "",
+      ...props
+    },
+    ref
+  ) {
+    const id = useId()
   return (
     <div>
-      {label && (
+      {label && 
         <label htmlFor={id} className="inline-block text-sm font-medium">
           {label}
         </label>
-      )}
+      }
       <input
         id={id}
+        placeholder={placeholder}
         type={type}
         className={`bg-white text-black px-3 py-2 outline-none focus:bg-gray-50 duration-200 border border-gray-200 ${className}`}
         ref={ref}
@@ -45,3 +31,32 @@ const Input = React.forwardRef(function Input(
 });
 
 export default Input;
+// import React, {useId} from 'react'
+
+// const Input = React.forwardRef( function Input({
+//     label,
+//     type = "text",
+//     className = "",
+//     ...props
+// }, ref){
+//     const id = useId()
+//     return (
+//         <div className='w-full'>
+//             {label && <label 
+//             className='inline-block mb-1 pl-1' 
+//             htmlFor={id}>
+//                 {label}
+//             </label>
+//             }
+//             <input
+//             type={type}
+//             className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
+//             ref={ref}
+//             {...props}
+//             id={id}
+//             />
+//         </div>
+//     )
+// })
+
+// export default Input
